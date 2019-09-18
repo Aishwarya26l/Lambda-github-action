@@ -18,17 +18,20 @@ if aws lambda get-function --function-name $LAMBDA_FUNC_NAME
                 sh -c "echo Successfully Deployed - $LAMBDA_FUNC_NAME"
             else
                 sh -c "echo Error while deploying - $LAMBDA_FUNC_NAME"
+                exit 1
         fi
     else
         if aws lambda create-function --function-name $LAMBDA_FUNC_NAME \
             --zip-file fileb://lambdaFunc.zip  \
-            --handler index.handler \
-            --runtime nodejs10.x \
+            --handler $LAMBDA_HANDLER \
+            --runtime $LAMBDA_RUNTIME \
             --role $LAMBDA_BASIC_EXEC_ARN
             then 
                 sh -c "echo Successfully Created - $LAMBDA_FUNC_NAME"
             else
                 sh -c "echo Error while creating - $LAMBDA_FUNC_NAME"
+                exit 1
         fi
         
 fi
+exit 0
