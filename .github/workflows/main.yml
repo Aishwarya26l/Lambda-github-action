@@ -1,0 +1,8 @@
+name: A workflow for lambda-github-action
+on: push
+jobs:
+  build:
+    name: Test action
+    steps:
+      env:
+        MY_NAME: "Aishwarya"
