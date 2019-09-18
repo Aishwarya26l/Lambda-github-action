@@ -5,7 +5,10 @@ LABEL "com.github.actions.description"="Deploy Lambda through GitHub Actions"
 LABEL "com.github.actions.icon"="upload-cloud"
 LABEL "com.github.actions.color"="purple"
 
-RUN pip3 install awscli --upgrade --user\
+RUN apk add --no-cache --virtual .build-deps gcc musl-dev \
+    && pip install cython \
+    && apk del .build-deps \
+    pip3 install awscli --upgrade --user\
     aws --version
 
 ADD entrypoint.sh /entrypoint.sh
