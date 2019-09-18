@@ -45,7 +45,7 @@ aws apigateway create-rest-api --name "${APINAME}" \
     --description "Api for ${LAMBDA_FUNC_NAME}" \
     --region ${AWS_DEFAULT_REGION}
 export APIID=$(aws apigateway get-rest-apis --query "items[?name==\`${APINAME}\`].id" --output text --region ${AWS_DEFAULT_REGION})
-export PARENTRESOURCEID=$(aws apigateway get-resources --rest-api-id ${APIID} --query 'items[?path==/].id' --output text --region ${AWS_DEFAULT_REGION})
+export PARENTRESOURCEID=$(aws apigateway get-resources --rest-api-id ${APIID} --query 'items[?path==`/`].id' --output text --region ${AWS_DEFAULT_REGION})
 
 # Create a proxy resource
 aws apigateway create-resource \
@@ -53,7 +53,7 @@ aws apigateway create-resource \
     --parent-id ${PARENTRESOURCEID} \
     --path-part {proxy+} \
     --region ${AWS_DEFAULT_REGION}
-export RESOURCEID=$(aws apigateway get-resources --rest-api-id ${APIID} --query 'items[?path==/{proxy+}].id' --output text --region ${AWS_DEFAULT_REGION})
+export RESOURCEID=$(aws apigateway get-resources --rest-api-id ${APIID} --query 'items[?path==`/{proxy+}`].id' --output text --region ${AWS_DEFAULT_REGION})
 
 aws apigateway put-method --rest-api-id ${APIID} \
        --resource-id ${RESOURCEID} \
