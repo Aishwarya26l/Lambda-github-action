@@ -10,27 +10,25 @@ export AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN
 zip -qr lambdaFunc.zip .
 
 if aws lambda get-function --function-name $LAMBDA_FUNC_NAME
-then
-    if aws lambda create-function --function-name $LAMBDA_FUNC_NAME \
-        --zip-file fileb://lambdaFunc.zip  \
-        --handler index.handler \
-        --runtime nodejs10.x \
-        --role $LAMBDA_BASIC_EXEC_ARN
-    then 
-        sh -c "echo Successfully Created - $LAMBDA_FUNC_NAME"
-    else
     then
-        sh -c "echo Error while creating - $LAMBDA_FUNC_NAME"
-    fi
-else
-then 
-    if aws lambda update-function-code \
-        --function-name $LAMBDA_FUNC_NAME \
-        --zip-file fileb://lambdaFunc.zip 
-    then 
-        sh -c "echo Successfully Deployed - $LAMBDA_FUNC_NAME"
+        if aws lambda create-function --function-name $LAMBDA_FUNC_NAME \
+            --zip-file fileb://lambdaFunc.zip  \
+            --handler index.handler \
+            --runtime nodejs10.x \
+            --role $LAMBDA_BASIC_EXEC_ARN
+            then 
+                sh -c "echo Successfully Created - $LAMBDA_FUNC_NAME"
+            else
+                sh -c "echo Error while creating - $LAMBDA_FUNC_NAME"
+        fi
     else
-    then
-        sh -c "echo Error while deploying - $LAMBDA_FUNC_NAME"
-    fi
+        then 
+            if aws lambda update-function-code \
+                --function-name $LAMBDA_FUNC_NAME \
+                --zip-file fileb://lambdaFunc.zip 
+                then 
+                    sh -c "echo Successfully Deployed - $LAMBDA_FUNC_NAME"
+                else
+                    sh -c "echo Error while deploying - $LAMBDA_FUNC_NAME"
+            fi
 fi
