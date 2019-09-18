@@ -7,8 +7,9 @@ LABEL "com.github.actions.color"="purple"
 
 RUN apk add --no-cache --virtual .build-deps gcc musl-dev \
     && pip install cython \
-    && apk del .build-deps \
-    pip3 install awscli 
+    && apk del .build-deps 
+    
+RUN pip3 install awscli 
 
 RUN aws --version
 
