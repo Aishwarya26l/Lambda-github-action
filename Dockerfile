@@ -8,10 +8,10 @@ LABEL "com.github.actions.color"="purple"
 RUN apk add --no-cache --virtual .build-deps gcc musl-dev \
     && pip install cython \
     && apk del .build-deps 
-    
+
 RUN pip3 install awscli 
 
-RUN aws --version
+RUN apk add zip
 
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
