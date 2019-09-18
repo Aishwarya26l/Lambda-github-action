@@ -62,7 +62,7 @@ aws apigateway put-method --rest-api-id ${APIID} \
        --region ${AWS_DEFAULT_REGION}
 
 aws apigateway put-integration \
-        --region ${AWS_DEFAULT_REGION}
+        --region ${AWS_DEFAULT_REGION} \
         --rest-api-id ${APIID} \
         --resource-id ${RESOURCEID} \
         --http-method ANY \
