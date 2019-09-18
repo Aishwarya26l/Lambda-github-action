@@ -4,6 +4,6 @@ jobs:
   build:
     name: Test action
     steps:
-    - uses: ./action-a
+    - uses: ./
       env:
         MY_NAME: "Aishwarya"
