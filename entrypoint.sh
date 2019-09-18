@@ -22,13 +22,12 @@ if aws lambda get-function --function-name $LAMBDA_FUNC_NAME
                 sh -c "echo Error while creating - $LAMBDA_FUNC_NAME"
         fi
     else
-        then 
-            if aws lambda update-function-code \
-                --function-name $LAMBDA_FUNC_NAME \
-                --zip-file fileb://lambdaFunc.zip 
-                then 
-                    sh -c "echo Successfully Deployed - $LAMBDA_FUNC_NAME"
-                else
-                    sh -c "echo Error while deploying - $LAMBDA_FUNC_NAME"
-            fi
+        if aws lambda update-function-code \
+            --function-name $LAMBDA_FUNC_NAME \
+            --zip-file fileb://lambdaFunc.zip 
+            then 
+                sh -c "echo Successfully Deployed - $LAMBDA_FUNC_NAME"
+            else
+                sh -c "echo Error while deploying - $LAMBDA_FUNC_NAME"
+        fi
 fi
