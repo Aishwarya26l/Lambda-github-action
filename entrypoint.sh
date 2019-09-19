@@ -13,6 +13,7 @@ aws cloudformation deploy \
     --stack-name ${LAMBDA_FUNC_NAME} \
     --template-file template.yaml \
     --capabilities CAPABILITY_IAM \
-    --region ${AWS_DEFAULT_REGION}
+    --region ${AWS_DEFAULT_REGION} \
+    --parameters ParameterKey=LambdaFuncName, ParameterValue=${LAMBDA_FUNC_NAME}
     
 exit 0

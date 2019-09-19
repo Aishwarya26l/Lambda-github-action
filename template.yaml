@@ -1,7 +1,10 @@
 AWSTemplateFormatVersion: "2010-09-09"
 
 Description: AWS API Gateway with a Lambda Integration
-
+Parameters:
+  LambdaFuncName:
+    Type: String
+    Default: "pythonTest"
 Resources:
   ApiGatewayRestApi:
     Type: AWS::ApiGateway::RestApi
@@ -11,7 +14,8 @@ Resources:
       EndpointConfiguration:
         Types:
           - EDGE
-      Name: ${LAMBDA_FUNC_NAME}-api
+      Name:
+        Ref: !Join ["", ["LambdaFuncName", "-api"]]
 
   ApiGatewayResource:
     Type: AWS::ApiGateway::Resource
@@ -98,7 +102,8 @@ Resources:
             }
             return response
       Description: AWS Lambda function
-      FunctionName: ${LAMBDA_FUNC_NAME}
+      FunctionName:
+        Ref: "LambdaFuncName"
       Handler: lambda_function.handler
       MemorySize: 128
       Role: !GetAtt LambdaIamRole.Arn
