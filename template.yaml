@@ -15,7 +15,10 @@ Resources:
         Types:
           - EDGE
       Name:
-        Ref: !Join ["", ["LambdaFuncName", "-api"]]
+        Join:
+          - ""
+          - - !Ref LambdaFuncName
+            - "-api"
 
   ApiGatewayResource:
     Type: AWS::ApiGateway::Resource
