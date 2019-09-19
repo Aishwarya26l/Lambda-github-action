@@ -16,4 +16,4 @@ aws cloudformation deploy \
     --region ${AWS_DEFAULT_REGION} \
     --parameter-overrides ParameterKey=LambdaFuncName,ParameterValue=${LAMBDA_FUNC_NAME}
     
-exit 0
+exit 0 
