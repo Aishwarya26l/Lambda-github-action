@@ -14,6 +14,6 @@ aws cloudformation deploy \
     --template-file template.yaml \
     --capabilities CAPABILITY_IAM \
     --region ${AWS_DEFAULT_REGION} \
-    --parameters ParameterKey=LambdaFuncName, ParameterValue=${LAMBDA_FUNC_NAME}
+    --parameter-overrides ParameterKey=LambdaFuncName,ParameterValue=${LAMBDA_FUNC_NAME}
     
 exit 0
