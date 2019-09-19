@@ -14,11 +14,7 @@ Resources:
       EndpointConfiguration:
         Types:
           - EDGE
-      Name:
-        Join:
-          - ""
-          - - !Ref LambdaFuncName
-            - "-api"
+      Name: !Join ["-", [!Ref LambdaFuncName, api]]
 
   ApiGatewayResource:
     Type: AWS::ApiGateway::Resource
