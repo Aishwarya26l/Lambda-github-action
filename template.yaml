@@ -10,7 +10,7 @@ Parameters:
     Default: "python3.7"
   LambdaHandler:
     Type: String
-    Default: "index.handler"
+    Default: "lambda_function.lambda_handler"
   LambdaMemory:
     Type: Number
     Default: 128
