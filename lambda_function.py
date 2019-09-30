@@ -7,5 +7,5 @@ def lambda_handler(event, context):
         "headers": {
             'Content-Type': 'text/html',
         },
-        "body": "Hi there, I'm New!"
+        "body": "Hi there, I'm New! I've changed again!!"
     }
