@@ -15,7 +15,7 @@ zip -r lambda-deploy.zip ./src/*
 
 aws cloudformation validate-template \
     --template-body file://template.yaml
-
+ 
 aws cloudformation package \
    --template-file template.yaml \
    --output-template-file packaged.yaml \
