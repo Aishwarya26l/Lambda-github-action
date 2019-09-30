@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Jupyter Executor Service.
+Parameters:
+  LambdaFuncName:
+    Type: String
+    Default: "pythonTest"
+Resources:
+  LambdaFunc:
+    Properties:
+      CodeUri: s3://agilevision-playground/caf23bc38bf3ecdb4e099ea4cc78e815
+      Events:
+        ExecuteFunc:
+          Properties:
+            Method: any
+            Path: /
+          Type: Api
+      Handler: index.handler
+      MemorySize: 128
+      Runtime: python3.7
+      Timeout: 40
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31

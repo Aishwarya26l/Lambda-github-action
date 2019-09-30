@@ -23,22 +23,12 @@ Resources:
     Type: AWS::IAM::Role
   LambdaFunc:
     Properties:
-      Code:
-        ZipFile: |
-          def handler(event, context):
-            response = {
-              'isBase64Encoded': False,
-              'statusCode': 200,
-              'headers': {},
-              'multiValueHeaders': {},
-              'body': 'Hello, World!'
-            }
-            return response
+      CodeUri: ./lambda-deploy.zip
       Description: AWS Lambda function
       FunctionName:
         Ref: "LambdaFuncName"
       Events:
-        ExecuteNotebook:
+        ExecuteFunc:
           Properties:
             Method: any
             Path: /

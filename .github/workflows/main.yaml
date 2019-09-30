@@ -3,17 +3,18 @@ on: push
 jobs:
   build:
     name: Test action
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - uses: ./
-      env:
-        MY_NAME: "Aishwarya"
-        AWS_DEFAULT_REGION: "us-east-1"
-        LAMBDA_FUNC_NAME: "pythonTest"
-        LAMBDA_RUNTIME: "python3.7"
-        LAMBDA_HANDLER: "lambda_function.lambda_handler"
-        LAMBDA_BASIC_EXEC_ARN: ${{ secrets.LAMBDA_BASIC_EXEC_ARN }}
-        AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      - uses: actions/checkout@master
+      - uses: ./
+        env:
+          MY_NAME: "Aishwarya"
+          AWS_DEFAULT_REGION: "us-east-1"
+          LAMBDA_FUNC_NAME: "pythonTest"
+          LAMBDA_RUNTIME: "python3.7"
+          LAMBDA_HANDLER: "lambda_function.lambda_handler"
+          BUCKET_NAME: "aishulambdatest"
+          LAMBDA_BASIC_EXEC_ARN: ${{ secrets.LAMBDA_BASIC_EXEC_ARN }}
+          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
