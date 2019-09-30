@@ -26,7 +26,11 @@ aws cloudformation deploy \
     --template-file packaged.yaml \
     --capabilities CAPABILITY_IAM \
     --region ${AWS_DEFAULT_REGION} \
-    --parameter-overrides LambdaFuncName=${LAMBDA_FUNC_NAME} LambdaRuntime=${LAMBDA_RUNTIME} LambdaHandler=${LAMBDA_HANDLER} LambdaMemory=${LAMBDA_MEMORY} LambdaTimeout=${LAMBDA_TIMEOUT} 
+    --parameter-overrides LambdaFuncName=${LAMBDA_FUNC_NAME} \
+        LambdaRuntime=${LAMBDA_RUNTIME} \
+        LambdaHandler=${LAMBDA_HANDLER} \
+        LambdaMemory=${LAMBDA_MEMORY} \
+        LambdaTimeout=${LAMBDA_TIMEOUT} 
 
     
 exit 0 
