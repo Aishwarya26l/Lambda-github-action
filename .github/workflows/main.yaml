@@ -1,4 +1,4 @@
-name: A workflow for lambda-github-action
+name: Deploy Lambda Function on push
 on: push
 jobs:
   build:
@@ -15,7 +15,6 @@ jobs:
           LAMBDA_MEMORY: 256
           LAMBDA_TIMEOUT: 40
           BUCKET_NAME: "aishulambdatest"
-          LAMBDA_BASIC_EXEC_ARN: ${{ secrets.LAMBDA_BASIC_EXEC_ARN }}
           AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

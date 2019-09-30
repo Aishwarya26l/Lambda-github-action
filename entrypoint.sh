@@ -21,16 +21,21 @@ aws cloudformation package \
    --output-template-file packaged.yaml \
    --s3-bucket "${BUCKET_NAME}" 
 
-aws cloudformation deploy \
-    --stack-name ${LAMBDA_FUNC_NAME} \
-    --template-file packaged.yaml \
-    --capabilities CAPABILITY_IAM \
-    --region ${AWS_DEFAULT_REGION} \
-    --parameter-overrides LambdaFuncName=${LAMBDA_FUNC_NAME} \
-        LambdaRuntime=${LAMBDA_RUNTIME} \
-        LambdaHandler=${LAMBDA_HANDLER} \
-        LambdaMemory=${LAMBDA_MEMORY} \
-        LambdaTimeout=${LAMBDA_TIMEOUT} 
+if  aws cloudformation deploy \
+        --stack-name ${LAMBDA_FUNC_NAME} \
+        --template-file packaged.yaml \
+        --capabilities CAPABILITY_IAM \
+        --region ${AWS_DEFAULT_REGION} \
+        --parameter-overrides LambdaFuncName=${LAMBDA_FUNC_NAME} \
+            LambdaRuntime=${LAMBDA_RUNTIME} \
+            LambdaHandler=${LAMBDA_HANDLER} \
+            LambdaMemory=${LAMBDA_MEMORY} \
+            LambdaTimeout=${LAMBDA_TIMEOUT} 
+    then 
+        exit 0
+    else
+        exit 1
+fi
 
     
 exit 0 
