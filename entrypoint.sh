@@ -19,15 +19,19 @@ aws cloudformation validate-template \
 aws cloudformation package \
    --template-file template.yaml \
    --output-template-file packaged.yaml \
-   --s3-bucket "${BUCKET_NAME}"
-
-cat packaged.yaml
+   --s3-bucket "${BUCKET_NAME}" 
 
 aws cloudformation deploy \
     --stack-name ${LAMBDA_FUNC_NAME} \
     --template-file packaged.yaml \
     --capabilities CAPABILITY_IAM \
     --region ${AWS_DEFAULT_REGION} \
-    --parameter-overrides ParameterKey=LambdaFuncName,ParameterValue=${LAMBDA_FUNC_NAME}
+    --parameter-overrides \
+        ParameterKey=LambdaFuncName,ParameterValue=${LAMBDA_FUNC_NAME} \
+        ParameterKey=LambdaRuntime,ParameterValue=${LAMBDA_RUNTIME} \
+        ParameterKey=LambdaHandler,ParameterValue=${LAMBDA_HANDLER} \
+        ParameterKey=LambdaMemory,ParameterValue=${LAMBDA_MEMORY} \
+        ParameterKey=LambdaTimeout,ParameterValue=${LAMBDA_TIMEOUT} \
+
     
 exit 0 

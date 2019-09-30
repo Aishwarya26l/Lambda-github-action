@@ -5,6 +5,18 @@ Parameters:
   LambdaFuncName:
     Type: String
     Default: "pythonTest"
+  LambdaRuntime:
+    Type: String
+    Default: "python3.7"
+  LambdaHandler:
+    Type: String
+    Default: "index.handler"
+  LambdaMemory:
+    Type: Number
+    Default: 128
+  LambdaTimeout:
+    Type: Number
+    Default: 40
 Resources:
   FunctionRole:
     Properties:
@@ -33,12 +45,16 @@ Resources:
             Method: any
             Path: /
           Type: Api
-      Handler: index.handler
-      MemorySize: 128
+      Handler:
+        Ref: "LambdaHandler"
+      MemorySize:
+        Ref: "LambdaMemory"
       Role:
         Fn::GetAtt:
           - FunctionRole
           - Arn
-      Runtime: python3.7
-      Timeout: 40
+      Runtime:
+        Ref: "LambdaRuntime"
+      Timeout:
+        Ref: "LambdaTimeout"
     Type: AWS::Serverless::Function
