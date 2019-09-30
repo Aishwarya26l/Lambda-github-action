@@ -7,7 +7,7 @@ Parameters:
 Resources:
   LambdaFunc:
     Properties:
-      CodeUri: s3://agilevision-playground/caf23bc38bf3ecdb4e099ea4cc78e815
+      CodeUri: s3://<bucket-name>/<key>
       Events:
         ExecuteFunc:
           Properties:
