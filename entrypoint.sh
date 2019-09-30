@@ -12,6 +12,7 @@ rm -f lambda-deploy.zip
 tar -czvf lambda-deploy-overlay.tgz ./
 aws s3 cp --acl public-read lambda-deploy-overlay.tgz "$OVERLAY_S3URL"
 cd src; zip -r ../lambda-deploy.zip *
+cd ..
 
 aws cloudformation validate-template \
     --template-body file://template.yaml
