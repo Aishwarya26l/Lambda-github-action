@@ -22,6 +22,8 @@ aws cloudformation package \
    --output-template-file packaged.yaml \
    --s3-bucket "${BUCKET_NAME}"
 
+cat packaged.yaml
+
 aws cloudformation deploy \
     --stack-name ${LAMBDA_FUNC_NAME} \
     --template-file template.yaml \
